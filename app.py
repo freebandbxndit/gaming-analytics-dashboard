@@ -25,10 +25,10 @@ def generate_data(num_players=10000):
     player_data['is_spender'] = (player_data['spend'] > 0).astype(int)
 
     funnel = pd.DataFrame({'player_id': player_data['player_id']})
-    funnel['completed_tutorial'] = np.random.binomial(1, 0.98, num_players)
-    funnel['completed_level_1'] = np.where(funnel['completed_tutorial'] == 1, np.random.binomial(1, 0.95, num_players), 0)
-    funnel['completed_level_5'] = np.where(funnel['completed_level_1'] == 1, np.random.binomial(1, 0.65, num_players), 0)
-    funnel['completed_level_10'] = np.where(funnel['completed_level_5'] == 1, np.random.binomial(1, 0.4, num_players), 0)
+    funnel['tutorial'] = np.random.binomial(1, 0.98, num_players)
+    funnel['completed level_1'] = np.where(funnel['completed_tutorial'] == 1, np.random.binomial(1, 0.95, num_players), 0)
+    funnel['completed level_5'] = np.where(funnel['completed_level_1'] == 1, np.random.binomial(1, 0.65, num_players), 0)
+    funnel['completed level_10'] = np.where(funnel['completed_level_5'] == 1, np.random.binomial(1, 0.4, num_players), 0)
 
     behavior = pd.DataFrame({
         'player_id': player_data['player_id'],
