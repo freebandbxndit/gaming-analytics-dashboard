@@ -9,6 +9,9 @@ from sklearn.cluster import KMeans
 st.set_page_config(page_title="Gaming Analytics Dashboard", layout="wide")
 st.title("🎮 Gaming Analytics Dashboard")
 st.markdown("Analyze funnel drop-off, player segmentation, and retention by acquisition channel.")
+st.markdown("""<style>...</style>""", unsafe_allow_html=True)
+sns.set_style("whitegrid")
+sns.set_palette("pastel")  # You can also try "coolwarm" or "rocket"
 
 @st.cache_data
 def generate_data(num_players=10000):
