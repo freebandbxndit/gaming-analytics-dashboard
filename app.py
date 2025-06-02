@@ -60,13 +60,19 @@ tab1, tab2, tab3 = st.tabs(["📉 Funnel Drop-off", "🧠 Cluster Analysis", "�
 
 with tab1:
     st.header("Player Progression Funnel")
-funnel_means = funnel_data.select_dtypes(include='number').mean().round(2)
+
+    # Only use numeric columns for mean calculation
+    funnel_means = funnel_data.select_dtypes(include='number').mean().round(2)
+
+    # Create bar chart
     fig, ax = plt.subplots()
     sns.barplot(x=funnel_means.index, y=funnel_means.values, ax=ax)
     ax.set_title("Funnel Drop-off: Tutorial → L1 → L5 → L10")
     ax.set_ylim(0, 1)
     for i, v in enumerate(funnel_means.values):
         ax.text(i, v + 0.02, f"{v:.2f}", ha='center')
+
+    # Display in Streamlit
     st.pyplot(fig)
     st.dataframe(funnel_means.to_frame(name="Rate"))
 
