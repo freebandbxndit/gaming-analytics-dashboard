@@ -2,5 +2,5 @@ streamlit
 pandas
 numpy
 matplotlib
-seaborn
+seaborn==0.12.2
 scikit-learn
