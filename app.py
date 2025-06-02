@@ -9,9 +9,6 @@ from sklearn.cluster import KMeans
 st.set_page_config(page_title="Gaming Analytics Dashboard", layout="wide")
 st.title("🎮 Gaming Analytics Dashboard")
 st.markdown("Analyze funnel drop-off, player segmentation, and retention by acquisition channel.")
-st.markdown("""<style>...</style>""", unsafe_allow_html=True)
-sns.set_style("whitegrid")
-sns.set_palette("pastel")  # You can also try "coolwarm" or "rocket"
 
 @st.cache_data
 def generate_data(num_players=10000):
@@ -79,6 +76,9 @@ with tab1:
     st.pyplot(fig)
     st.dataframe(funnel_means.to_frame(name="Rate"))
 
+sns.set_style("whitegrid")
+sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
+
 with tab2:
     st.header("K-Means Player Clusters")
     st.dataframe(behavior_data.groupby('cluster')[['sessions', 'avg_session_length', 'days_active', 'spend']].mean().round(2))
@@ -86,6 +86,9 @@ with tab2:
     sns.boxplot(data=behavior_data, x='cluster', y='spend', ax=ax)
     ax.set_title("Spending Distribution by Cluster")
     st.pyplot(fig)
+
+sns.set_style("whitegrid")
+sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
 
 with tab3:
     st.header("7-Day Retention by Acquisition Channel")
@@ -98,3 +101,6 @@ with tab3:
     ax.legend()
     st.pyplot(fig)
     st.dataframe(retention_data.round(2))
+
+sns.set_style("whitegrid")
+sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
