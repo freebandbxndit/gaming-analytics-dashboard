@@ -67,6 +67,8 @@ with tab1:
     # Create bar chart
     fig, ax = plt.subplots()
     sns.barplot(x=funnel_means.index, y=funnel_means.values, ax=ax)
+    sns.set_style("whitegrid")
+sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
     ax.set_title("Funnel Drop-off: Tutorial → L1 → L5 → L10")
     ax.set_ylim(0, 1)
     for i, v in enumerate(funnel_means.values):
@@ -76,31 +78,26 @@ with tab1:
     st.pyplot(fig)
     st.dataframe(funnel_means.to_frame(name="Rate"))
 
-sns.set_style("whitegrid")
-sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
-
 with tab2:
     st.header("K-Means Player Clusters")
     st.dataframe(behavior_data.groupby('cluster')[['sessions', 'avg_session_length', 'days_active', 'spend']].mean().round(2))
     fig, ax = plt.subplots()
     sns.boxplot(data=behavior_data, x='cluster', y='spend', ax=ax)
-    ax.set_title("Spending Distribution by Cluster")
-    st.pyplot(fig)
-
 sns.set_style("whitegrid")
 sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
+    ax.set_title("Spending Distribution by Cluster")
+    st.pyplot(fig)
 
 with tab3:
     st.header("7-Day Retention by Acquisition Channel")
     fig, ax = plt.subplots(figsize=(10, 5))
     for channel in retention_data.index:
         ax.plot(retention_data.columns, retention_data.loc[channel], label=channel)
+        sns.set_style("whitegrid")
+sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
     ax.set_title("Retention Curves (Day 1–7)")
     ax.set_xlabel("Day Since Install")
     ax.set_ylabel("Retention Rate")
     ax.legend()
     st.pyplot(fig)
     st.dataframe(retention_data.round(2))
-
-sns.set_style("whitegrid")
-sns.set_palette(["#ff99c8", "#f15bb5", "#ffc2d1"])
