@@ -2,6 +2,5 @@ streamlit
 pandas
 numpy
 matplotlib
-seaborn==0.12.2
 scikit-learn
-# Trigger redeploy
+seaborn==0.12.2
