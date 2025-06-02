@@ -60,7 +60,7 @@ tab1, tab2, tab3 = st.tabs(["📉 Funnel Drop-off", "🧠 Cluster Analysis", "�
 
 with tab1:
     st.header("Player Progression Funnel")
-    funnel_means = funnel_data.mean().round(2)
+funnel_means = funnel_data.select_dtypes(include='number').mean().round(2)
     fig, ax = plt.subplots()
     sns.barplot(x=funnel_means.index, y=funnel_means.values, ax=ax)
     ax.set_title("Funnel Drop-off: Tutorial → L1 → L5 → L10")
